@@ -29,7 +29,7 @@ git fetch origin --tags --quiet
 
 last_tag=""
 if [ "${INPUT_FLAG_BRANCH}" = true ];then
-    last_tag=$(git describe --tags $(git rev-list --tags) --always | grep v | sort -V -r | head -n 1)
+    last_tag=$(git describe --tags $(git rev-list --tags) --always | grep v | head -n 1)
     echo "Last tag: ${last_tag}";
 else
     last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
