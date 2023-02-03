@@ -48,7 +48,7 @@ fi
 
 patch_number=$(echo "$last_tag" | awk -F. '{print $3}')
 new_patch_number=$((patch_number + 1))
-next_tag="$(echo "$version" | awk -F. '{print $1"."$2"."}')$new_patch_number"
+next_tag="$(echo "$last_tag" | awk -F. '{print $1"."$2"."}')$new_patch_number"
 echo "3) Next tag: ${next_tag}";
 
 
