@@ -29,10 +29,7 @@ git fetch origin --tags --quiet
 
 last_tag=""
 if [ "${INPUT_FLAG_BRANCH}" = true ];then
-    branch=$(git rev-parse --abbrev-ref HEAD)
-    echo "branch: ${branch}";
-
-    last_tag=`git describe --tags $(git rev-list --tags) --always|egrep "${INPUT_PREV_TAG}\.[0-9]*\.[0-9]*$"|sort -V -r|head -n 1`
+    last_tag=$(git describe --tags $(git rev-list --tags) --always | grep v | sort -V -r | head -n 1)
     echo "Last tag: ${last_tag}";
 else
     last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
@@ -49,7 +46,9 @@ if [ -z "${last_tag}" ];then
     echo "Default Last tag: ${last_tag}";
 fi
 
-next_tag="${last_tag%.*}.$((${last_tag##*.}+1))"
+patch_number=$(echo "$last_tag" | awk -F. '{print $3}')
+new_patch_number=$((patch_number + 1))
+next_tag="$(echo "$version" | awk -F. '{print $1"."$2"."}')$new_patch_number"
 echo "3) Next tag: ${next_tag}";
 
 
