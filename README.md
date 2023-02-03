@@ -35,7 +35,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create an incremental release
-      uses: Paxx-RnD/incremental-tag
+      uses: Paxx-RnD/incremental-tag@latest
       with:
         flag_branch: true
         message: Bump version
