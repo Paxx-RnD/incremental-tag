@@ -35,7 +35,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create an incremental release
-      uses: aurestic/incrementarl-create-release@master
+      uses: Paxx-RnD/incrementarl-create-release@master
       with:
         flag_branch: true
         message: Bump version
